@@ -1,8 +1,8 @@
-class Api::V2::ExpensesController < ApplicationController
-    before_action :authenticate_with_token!
+class Api::V2::ExpensesController < Api::V2::BaseController
+    before_action :authenticate_user!
 
     def index
-        expenses = current_user.expenses.ransack(params[:q].result)
+        expenses = current_user.expenses.ransack(params[:q]).result
         render json: { expenses: expenses }, status: 200
     end
 
