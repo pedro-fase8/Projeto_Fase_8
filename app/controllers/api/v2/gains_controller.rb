@@ -1,5 +1,5 @@
 class Api::V2::GainsController < Api::V2::BaseController
-    before_action :authenticate_user
+    before_action :authenticate_user!
 
     def index
         gains = current_user.gains.ransack(params[:q]).result
